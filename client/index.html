@@ -1,0 +1,580 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BesBoo - Trang chủ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="d-flex justify-between align-center">
+                    <div>
+                        <i class="fas fa-phone"></i> Hotline: 1900-xxxx
+                        <i class="fas fa-envelope" style="margin-left: 20px;"></i> support@besboo.com
+                    </div>
+                    <div>
+                        <a href="#" style="margin-right: 15px;">Chính sách đổi trả</a>
+                        <a href="#">Hỗ trợ khách hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <a href="/">BesBoo</a>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                        <button class="search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <div class="user-menu">
+                            <button class="user-btn" id="userBtn" style="display: none;">
+                                <i class="fas fa-user"></i>
+                                <span class="username"></span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            
+                            <div class="login-btn">
+                                <a href="./login.html" class="btn btn-outline">
+                                    <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                                </a>
+                            </div>
+                            
+                            <div class="dropdown" id="userDropdown">
+                                
+                                <a href="./orders.html"><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</a>
+                                <a href="/favorites"><i class="fas fa-heart"></i> Sản phẩm yêu thích</a>
+                                <a href="./admin.html" class="admin-link" style="display: none;"><i class="fas fa-cog"></i> Quản trị</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                            </div>
+                        </div>
+                        
+                        <a href="./cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="./index.html">Trang chủ</a></li>
+                    <li><a href="./product.html">Tất cả sản phẩm</a></li>
+                    <li><a href="./categories.html">Danh mục</a></li>
+                    <li><a href="./contact.html">Liên hệ</a></li>
+
+                    <!-- Categories will be loaded here -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Chào mừng đến với BesBoo</h1>
+            <p>Khám phá hàng nghìn sản phẩm thời trang chất lượng cao với giá tốt nhất</p>
+            <a href="./product.html" class="btn btn-primary">Khám phá ngay</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Featured Products -->
+            <section class="featured-products">
+                <div class="section-title">
+                    <h2>Sản phẩm nổi bật</h2>
+                    <p>Những sản phẩm được yêu thích nhất</p>
+                </div>
+                <div class="products-grid" id="featuredProducts">
+                    <!-- Featured products will be loaded here -->
+                </div>
+            </section>
+
+            <!-- New Products -->
+            <section class="new-products" style="margin-top: 60px;">
+                <div class="section-title">
+                    <h2>Sản phẩm mới</h2>
+                    <p>Cập nhật những xu hướng thời trang mới nhất</p>
+                </div>
+                <div class="products-grid" id="newProducts">
+                    <!-- New products will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="categories-section" style="margin-top: 60px;">
+                <div class="section-title">
+                    <h2>Danh mục sản phẩm</h2>
+                    <p>Tìm kiếm theo danh mục yêu thích</p>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Promotions -->
+            <section class="promotions-section" style="margin-top: 60px;">
+                <div class="section-title">
+                    <h2>Khuyến mãi hot</h2>
+                    <p>Những ưu đãi không thể bỏ qua</p>
+                </div>
+                <div class="promotions-grid" id="promotionsGrid">
+                    <!-- Promotions will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BesBoo</h3>
+                    <p>Cửa hàng thời trang trực tuyến uy tín, chất lượng cao với giá cả hợp lý.</p>
+                    <div class="social-links" style="margin-top: 15px;">
+                        <a href="#" style="margin-right: 10px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="margin-right: 10px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="margin-right: 10px;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="./products.html">Sản phẩm</a></li>
+                        <li><a href="/about">Giới thiệu</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Thông tin liên hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận X, TP.HCM</li>
+                        <li><i class="fas fa-phone"></i> 1900-xxxx</li>
+                        <li><i class="fas fa-envelope"></i> besboo@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 BesBoo. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Initialize homepage
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize auth state
+            Utils.initializeAuth();
+            
+            // Load homepage data
+            await loadHomepageData();
+            
+            // Update cart count
+            await updateCartCount();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        // Load homepage data
+        async function loadHomepageData() {
+            try {
+                // Load categories for navigation
+                await loadCategories();
+                
+                // Load featured products
+                await loadFeaturedProducts();
+                
+                // Load new products
+                await loadNewProducts();
+                
+                // Load promotions
+                await loadPromotions();
+                
+            } catch (error) {
+                console.error('Error loading homepage data:', error);
+                Utils.showToast('Có lỗi xảy ra khi tải dữ liệu', 'error');
+            }
+        }
+
+        // Load categories
+        async function loadCategories() {
+            try {
+                const response = await API.categories.getCategories();
+                const navMenu = document.getElementById('navMenu');
+                const categoriesGrid = document.getElementById('categoriesGrid');
+                
+                // Add to navigation
+                // response.categories.forEach(category => {
+                //     const li = document.createElement('li');
+                //     li.innerHTML = `<a href="/category=${category.category_id}">${category.name}</a>`;
+                //     navMenu.appendChild(li);
+                // });
+                
+                // Add to categories grid
+                categoriesGrid.innerHTML = response.categories.map(category => `
+                    <div class="category-card" onclick="location.href='./product.html?category=${category.category_id}'">
+                        <div class="category-image">
+                            <img src="${category.image_url || '/images/placeholder.jpg'}" alt="${category.name}">
+                        </div>
+                        <div class="category-info">
+                            <h3>${category.name}</h3>
+                            <p>${category.product_count} sản phẩm</p>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        // Load featured products
+        async function loadFeaturedProducts() {
+            const container = document.getElementById('featuredProducts');
+            Utils.showLoading(container);
+            
+            try {
+                const response = await API.products.getFeaturedProducts();
+                container.innerHTML = response.products.map(product => createProductCard(product)).join('');
+            } catch (error) {
+                Utils.showError(container, 'Không thể tải sản phẩm nổi bật');
+            }
+        }
+
+        // Load new products
+        async function loadNewProducts() {
+            const container = document.getElementById('newProducts');
+            Utils.showLoading(container);
+            
+            try {
+                const response = await API.products.getNewProducts();
+                container.innerHTML = response.products.map(product => createProductCard(product)).join('');
+            } catch (error) {
+                Utils.showError(container, 'Không thể tải sản phẩm mới');
+            }
+        }
+
+        // Load promotions
+        async function loadPromotions() {
+            const container = document.getElementById('promotionsGrid');
+            Utils.showLoading(container);
+            try {
+                const response = await API.promotions.getPromotions();
+                const promos = response.promotions || response.data || [];
+                container.innerHTML = promos.map(promo => `
+                    <div class="promotion-card">
+                        <div class="promo-icon">
+                            <i class="${promo.icon || 'fas fa-tag'}"></i>
+                        </div>
+                        <div class="promo-content">
+                            <h4>${promo.title || promo.name || 'Khuyến mãi'}</h4>
+                            <p>${promo.description || promo.short_description || ''}</p>
+                            ${promo.discount_percent ? `<small>Giảm ${promo.discount_percent}%</small>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading promotions:', error);
+                Utils.showError(container, 'Không thể tải khuyến mãi');
+            }
+        }
+
+
+        // Create product card HTML
+        function createProductCard(product) {
+            const discountPrice = product.discount_percent > 0 
+                ? product.price * (1 - product.discount_percent / 100)
+                : product.price;
+            
+            return `
+                <div class="product-card" onclick="location.href='/product/${product.product_id}'">
+                    <div class="product-image">
+                        <img src="${product.image_url || '/images/placeholder.jpg'}" alt="${product.name}">
+                        ${product.is_new ? '<span class="product-badge new">Mới</span>' : ''}
+                        ${product.discount_percent > 0 ? `<span class="product-badge sale">-${product.discount_percent}%</span>` : ''}
+                        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(${product.product_id}, this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category_name || 'Sản phẩm'}</div>
+                        <h3>${product.name}</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                ${generateStars(product.avg_rating || 0)}
+                            </div>
+                            <span class="rating-count">(${product.review_count || 0})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">${Utils.formatCurrency(discountPrice)}</span>
+                            ${product.discount_percent > 0 ? `<span class="original-price">${Utils.formatCurrency(product.price)}</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.product_id})">
+                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate stars HTML
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i - 0.5 <= rating) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Add to cart function
+        async function addToCart(productId) {
+            const user = Utils.getUser();
+            if (!user) {
+                Utils.showToast('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng', 'error');
+                return;
+            }
+
+            try {
+                await API.cart.addToCart({
+                    product_id: productId,
+                    quantity: 1
+                });
+                
+                Utils.showToast('Đã thêm sản phẩm vào giỏ hàng');
+                await updateCartCount();
+            } catch (error) {
+                Utils.showToast(error.message, 'error');
+            }
+        }
+
+        // Toggle favorite function
+        async function toggleFavorite(productId, button) {
+            const user = Utils.getUser();
+            if (!user) {
+                Utils.showToast('Vui lòng đăng nhập để thêm sản phẩm yêu thích', 'error');
+                return;
+            }
+
+            try {
+                const response = await API.favorites.toggleFavorite(productId);
+                const icon = button.querySelector('i');
+                
+                if (response.is_favorite) {
+                    icon.className = 'fas fa-heart';
+                    button.classList.add('active');
+                } else {
+                    icon.className = 'far fa-heart';
+                    button.classList.remove('active');
+                }
+                
+                Utils.showToast(response.message);
+            } catch (error) {
+                Utils.showToast(error.message, 'error');
+            }
+        }
+
+        // Update cart count
+        async function updateCartCount() {
+            const user = Utils.getUser();
+            const cartCountElement = document.getElementById('cartCount');
+            
+            if (!user) {
+                cartCountElement.textContent = '0';
+                return;
+            }
+
+            try {
+                const response = await API.cart.getCart();
+                // Backend trả về total_items, không phải item_count
+                const count = response.total_items || 0;
+                cartCountElement.textContent = count;
+                
+                // Also update other cart count elements if they exist
+                const cartBadges = document.querySelectorAll('.cart-count, .cart-badge');
+                cartBadges.forEach(badge => {
+                    badge.textContent = count;
+                    badge.style.display = count > 0 ? 'inline-block' : 'none';
+                });
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+                cartCountElement.textContent = '0';
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // User menu toggle
+            const userBtn = document.getElementById('userBtn');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            if (userBtn) {
+                userBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                userDropdown.classList.remove('show');
+            });
+
+            // Logout button
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    API.auth.logout();
+                });
+            }
+
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            const performSearch = () => {
+                const query = searchInput.value.trim();
+                if (query) {
+                    window.location.href = `/products?search=${encodeURIComponent(query)}`;
+                }
+            };
+
+            if (searchBtn) {
+                searchBtn.addEventListener('click', performSearch);
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+        }
+    </script>
+
+    <style>
+        /* Additional styles for homepage */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image {
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .promotion-card {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .promo-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .promo-content h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .promo-content p {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .promo-content small {
+            opacity: 0.8;
+        }
+    </style>
+</body>
+</html>

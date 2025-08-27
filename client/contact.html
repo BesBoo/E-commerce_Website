@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Debug - EmailJS</title>
+    
+    <!-- EmailJS SDK - Updated version -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .debug-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .debug-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .config-info {
+            font-family: 'Courier New', monospace;
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .submit-btn.loading .spinner {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            position:fixed;
+            top: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size:20px; 
+            padding:   10px 15px;
+            border:#21f9b1 2px solid;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            color: #0d9568;
+            background: white;
+            box-shadow: 0 5px 15px rgba(33, 249, 177, 0.3);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <a href="./index.html" class="back-btn">⬅ Quay về trang chủ</a>
+    <div class="container">
+
+
+        <!-- Alerts -->
+        <div id="alertSuccess" class="alert success">
+            <strong> Thành công!</strong> Email đã được gửi thành công!
+        </div>
+        
+        <div id="alertError" class="alert error">
+            <strong>❌ Lỗi!</strong> <span id="errorMessage">Có lỗi xảy ra</span>
+        </div>
+
+        <div id="alertInfo" class="alert info">
+            <span id="infoMessage">Đang xử lý...</span>
+        </div>
+
+        <!-- Contact Form -->
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Họ và tên *</label>
+                <input type="text" id="name" name="name" placeholder="Nhập họ tên của bạn" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Số điện thoại *</label>
+                <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Nội dung *</label>
+                <textarea id="message" name="message" placeholder="Viết nội dung liên hệ..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="spinner"></span>
+                <span class="btn-text">Gửi liên hệ</span>
+            </button>
+        </form>
+
+        <!-- Debug Log -->
+        <div class="log" id="debugLog"></div>
+    </div>
+
+    <script>
+        // Debug logging function
+        function debugLog(message, type = 'info') {
+            const logElement = document.getElementById('debugLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            logElement.textContent += logMessage;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(`EmailJS Debug - ${logMessage}`);
+        }
+
+        // UI Helper functions - Define first
+        function showAlert(alertId, message = null) {
+            const alertElement = document.getElementById(alertId);
+            if (!alertElement) return;
+            
+            // Hide all alerts first
+            document.querySelectorAll('.alert').forEach(el => el.style.display = 'none');
+            
+            if (message) {
+                if (alertId === 'alertError') {
+                    const errorMsgEl = document.getElementById('errorMessage');
+                    if (errorMsgEl) errorMsgEl.textContent = message;
+                } else if (alertId === 'alertInfo') {
+                    const infoMsgEl = document.getElementById('infoMessage');
+                    if (infoMsgEl) infoMsgEl.textContent = message;
+                }
+            }
+            
+            alertElement.style.display = 'block';
+            alertElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Initialize EmailJS with better error handling
+        (function() {
+            try {
+                // Your actual Public Key
+                const publicKey = "your_public_key";
+                
+                emailjs.init(publicKey);
+                debugLog("✅ Email đã được khởi tạo thành công ");
+                
+                setTimeout(() => {
+                    showAlert('alertInfo', 'Hãy cho chúng tôi biết phản hồi của bạn');
+                }, 500);
+                
+            } catch (error) {
+                debugLog("❌ Lỗi khởi tạo Email: " + error.message, "error");
+                setTimeout(() => {
+                    showAlert('alertError', 'Không thể khởi tạo Email: ' + error.message);
+                }, 500);
+            }
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                
+                hideAlerts();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = {
+                    from_name: formData.get('name').trim(),
+                    from_email: formData.get('email').trim(),
+                    phone: formData.get('phone').trim(),
+                    message: formData.get('message').trim(),
+                    to_email: 'tranduyduc9679@gmail.com',
+                    subject: "Phản hồi từ khách hàng (Contact Form)"
+                };
+
+                
+
+                // Basic validation
+                if (!validateForm(data)) {
+                    debugLog("❌ Validation thất bại", "error");
+                    return;
+                }
+
+                
+                setLoadingState(true);
+
+                try {
+                    debugLog(" Đang gửi email...");
+                    showAlert('alertInfo', 'Đang gửi email...');
+                    
+                    // Send email with detailed logging
+                    const response = await emailjs.send(
+                        'your_service_id',    // Service ID
+                        'your_template_id',   // Template ID
+                        data
+                    );
+
+                    // debugLog("✅ Email Response: " + JSON.stringify(response));
+                    
+                    if (response.status === 200) {
+                        debugLog(" Email đã được gửi thành công!");
+                        showAlert('alertSuccess');
+                        form.reset();
+                    } else {
+                        throw new Error(`Email returned status: ${response.status}`);
+                    }
+                    
+                } catch (error) {
+                    debugLog("❌ Lỗi gửi email: " + error.toString(), "error");
+                    
+                    let errorMsg = 'Có lỗi xảy ra khi gửi email.';
+                    
+                    if (error.text) {
+                        errorMsg += ' Chi tiết: ' + error.text;
+                    } else if (error.message) {
+                        errorMsg += ' Chi tiết: ' + error.message;
+                    }
+                    
+                    // Common error messages
+                    if (error.toString().includes('401')) {
+                        errorMsg = 'Lỗi xác thực EmailJS. Kiểm tra Public Key và Service ID.';
+                    } else if (error.toString().includes('400')) {
+                        errorMsg = 'Dữ liệu gửi không hợp lệ. Kiểm tra Template ID và tham số.';
+                    } else if (error.toString().includes('network')) {
+                        errorMsg = 'Lỗi mạng. Vui lòng kiểm tra kết nối internet.';
+                    }
+                    
+                    showAlert('alertError', errorMsg);
+                } finally {
+                    setLoadingState(false);
+                }
+            });
+
+            // Validation function
+            function validateForm(data) {
+                if (!data.from_name || !data.phone || !data.from_email || !data.message) {
+                    showAlert('alertError', 'Vui lòng điền đầy đủ thông tin bắt buộc.');
+                    return false;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.from_email)) {
+                    showAlert('alertError', 'Email không hợp lệ.');
+                    return false;
+                }
+
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(data.phone)) {
+                    showAlert('alertError', 'Số điện thoại phải có 10-11 chữ số.');
+                    return false;
+                }
+
+                return true;
+            }
+
+            // UI Helper functions
+            function setLoadingState(loading) {
+                if (loading) {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('loading');
+                    submitBtn.querySelector('.btn-text').textContent = 'Đang gửi...';
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    submitBtn.querySelector('.btn-text').textContent = 'Gửi liên hệ';
+                }
+            }
+
+            function hideAlerts() {
+                document.getElementById('alertSuccess').style.display = 'none';
+                document.getElementById('alertError').style.display = 'none';
+                document.getElementById('alertInfo').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
