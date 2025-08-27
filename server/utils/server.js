@@ -53,8 +53,8 @@ try {
     closeDB = dbModule.closeDB;
     console.log('✅ Database module loaded successfully');
 } catch (error) {
-    console.error('❌ Database module error:', error.message);
-    console.error('❌ Stack trace:', error.stack);
+    console.error(' Database module error:', error.message);
+    console.error(' Stack trace:', error.stack);
 }
 
 // Function to safely load and validate routes
@@ -64,7 +64,7 @@ const loadRoute = (routePath, routeName) => {
         
         // Validate that the module exports a router
         if (!routeModule || typeof routeModule !== 'function') {
-            console.error(`❌ ${routeName}: Not a valid Express router`);
+            console.error(` ${routeName}: Not a valid Express router`);
             
             // Create fallback router
             const express = require('express');
@@ -78,12 +78,12 @@ const loadRoute = (routePath, routeName) => {
             return fallbackRouter;
         }
         
-        console.log(`✅ ${routeName} loaded successfully`);
+        console.log(` ${routeName} loaded successfully`);
         return routeModule;
         
     } catch (error) {
-        console.error(`❌ ${routeName} error:`, error.message);
-        console.error(`❌ ${routeName} stack:`, error.stack);
+        console.error(` ${routeName} error:`, error.message);
+        console.error(` ${routeName} stack:`, error.stack);
         
         // Create fallback router
         const express = require('express');
@@ -290,11 +290,11 @@ const startServer = async () => {
         
         app.listen(PORT, () => {
             console.log('\n' + '='.repeat(60));
-            console.log(` 🚀 Server running on http://localhost:${PORT}`);
-            console.log(` 📁 Environment: ${process.env.NODE_ENV || 'development'}`);
-            console.log(` 💾 Database: ${connectDB ? 'Connected to SQL Server' : 'Database connection not available'}`);
-            console.log(` 📊 Health check: http://localhost:${PORT}/api/health`);
-            console.log(` 🔍 Debug routes: http://localhost:${PORT}/debug/routes`);
+            console.log(`  Server running on http://localhost:${PORT}`);
+            console.log(`  Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`  Database: ${connectDB ? 'Connected to SQL Server' : 'Database connection not available'}`);
+            console.log(`  Health check: http://localhost:${PORT}/api/health`);
+            console.log(`  Debug routes: http://localhost:${PORT}/debug/routes`);
             console.log('='.repeat(60));
         });
     } catch (error) {
